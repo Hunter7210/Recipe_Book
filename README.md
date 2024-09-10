@@ -6,6 +6,11 @@
 
 Será desenvolvida uma plataforma de receitas, onde cada usuário logado terá a possibilidade de cadastrar suas próprias receitas, além de navegar e interagir com receitas criadas por outros usuários. Os usuários poderão avaliar as receitas com notas e comentários. A plataforma funcionará como um livro de receitas comunitário, permitindo o compartilhamento de criações culinárias e incentivando a exploração de novas ideias para refeições.
 
+
+<details>
+
+<summary><strong>Escopo</strong></summary>
+
 ### Objetivos Gerais
 
 - Facilitar o cadastro e compartilhamento de receitas pelos usuários.
@@ -84,11 +89,23 @@ Será desenvolvida uma plataforma de receitas, onde cada usuário logado terá a
 - **Adversidade com Membros da Equipe:**  
   **Solução:** Redistribuir atividades para outros integrantes da equipe e ajustar o cronograma conforme necessário.
 
+</details>
+
+<details>
+
+<summary><strong>Cronograma</strong></summary>
+
 ## Cronograma do Projeto
 
 
 ![Cronograma](documentation_img/Cronograma_Livro_Receitas.png)
 
+
+
+</details>
+<details>
+
+<summary><strong>Diagramas</strong></summary>
 
 ### Diagrama de Classe:
 ```mermaid
@@ -133,3 +150,6 @@ classDiagram
 ![Diagrama de Fluxo](documentation_img/Diagram_Fluxo_2_Livro_Receitas.png)
 
 ![Diagrama de Fluxo](documentation_img/Diagram_Fluxo_3_Livro_Receitas.png)
+
+
+</details>
