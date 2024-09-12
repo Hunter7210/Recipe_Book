@@ -1,0 +1,12 @@
+Desenvolvendo uma aplicação Livro de receitas no Next
+
+  V  Inicializar o projeto Next.js.
+  V  Instalar as dependências necessárias: bcryptjs, jsonwebtoken, mongoose.
+  V  Configurar o MongoDB (Atlas ou local).
+  V Configurar o Mongoose e conectar ao MongoDB.
+  V  Criar modelos Mongoose (ex.: Usuario).
+  V  Criar rotas de API no Next.js para registro e login de usuários.
+  V Implementar a funcionalidade de hash de senha com Bcrypt.
+  V  Implementar autenticação usando JWT para gerar e validar tokens.
+  V  Criar middleware para proteger rotas com JWT.
+    Testar a aplicação com as rotas protegidas e MongoDB.

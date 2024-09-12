@@ -1,7 +1,7 @@
 //Criando a conexão com o mongoDB
 import mongoose from "mongoose";
 
-const dataBaseUrl = process.env.DATABASE_URL;
+const dataBaseUrl = process.env.DATABASE_URL 
 
 //verificação de falha no banco de dados
 if (!dataBaseUrl) {
