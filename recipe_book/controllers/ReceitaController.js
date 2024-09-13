@@ -7,7 +7,7 @@ import connectMongo from "@/utils/dbConnect";
 export const getReceita = async (req, res) => {
   await connectMongo();
   try {
-    const receita = await Receita.find({ userId: req.usuario.userId });
+    const receita = await Receita.find({ userId: req.usuario._id });
     res.status(200).json({ receita });
   } catch (error) {
     res.status(500).json({ error });

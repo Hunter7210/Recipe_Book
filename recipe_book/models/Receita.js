@@ -18,11 +18,11 @@ const ReceitaSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-  /*   userId: { //Necessário para armazenar o ID da minha coleção Usuario
+    userId: { //Necessário para armazenar o ID da minha coleção Usuario
         type: mongoose.Schema.Types.ObjectId, //Possibilita que este campo tera uma ID do Usuario
         ref: 'Usuario', //Refere-se ao modelo Usuario, permitindo a relação
         required: true,
-    }, */
+    },
     //Como os ingredientes estão como subdocumentos então não ha necessidade de criar um modelo separado.
     ingredientes: [ //Lista ou Array que convem varios objetos
         {
@@ -45,6 +45,6 @@ const ReceitaSchema = new mongoose.Schema({
 
 });
 const Receita =
-  mongoose.models.Receita || mongoose.model("Receita", ReceitaSchema);
+    mongoose.models.Receita || mongoose.model("Receita", ReceitaSchema);
 
 export default Receita;

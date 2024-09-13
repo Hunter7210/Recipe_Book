@@ -36,7 +36,8 @@ export default function ReceitaPage() {
         const data = await response.json();
         setReceitas(data.receitas);
       } else {
-        router.push("/login"); // Redireciona para login se houver erro
+        // router.push("/login"); // Redireciona para login se houver erro
+        console.log("Retornei para a pagina login porque deu erro aqui")
       }
     };
 
