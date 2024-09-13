@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Navbar from "@/src/components/Navbar";
+import CustomHead from "@/src/components/CustomHead";
 
 export default function Login() {
   const [emailUsuario, setEmailUsuario] = useState("");
@@ -32,23 +34,30 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email do Usuário"
-          value={emailUsuario}
-          onChange={(e) => setEmailUsuario(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senhaUsuario}
-          onChange={(e) => setSenhaUsuario(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+      <CustomHead 
+        title="Login - MyRecipeBook" 
+        description="Faça login no MyRecipeBook para acessar suas receitas."
+        keywords="login, MyRecipeBook, receitas"
+      />
+      <Navbar />
+      <div className="form">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email do Usuário"
+            value={emailUsuario}
+            onChange={(e) => setEmailUsuario(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senhaUsuario}
+            onChange={(e) => setSenhaUsuario(e.target.value)}
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }
-  
