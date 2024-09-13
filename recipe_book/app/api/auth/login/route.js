@@ -34,12 +34,13 @@ export async function POST(request) {
     }
 
     // Cria um token JWT
-    const token = jwt.sign({ _id: usuario._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+    const token = jwt.sign({ userId: usuario._id }, process.env.JWT_SECRET, {
+      expiresIn: 1,
     });
 
+    
     // Retorna uma resposta JSON com o token
-    return NextResponse.json({ success: true, token });
+    return NextResponse.json({token});
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     return NextResponse.json(

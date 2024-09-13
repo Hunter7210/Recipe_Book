@@ -9,9 +9,15 @@ import {
 // método GET - listar as tarefas do Usuário
 export async function GET(req, res) {
   return jwtMiddleware(async (req, res) => {
-    await getReceita(req, res);
+    try {
+      await getReceita(req, res);
+      console.log("Passou pelo get da rota")
+    } catch (error) {
+      res.status(500).json({ error: "Erro ao obter receita" });
+    }
   })(req, res);
 }
+
 
 // Método POST - nova tarefa
 export async function POST(req, res) {

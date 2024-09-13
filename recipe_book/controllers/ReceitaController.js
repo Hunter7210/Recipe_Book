@@ -1,16 +1,21 @@
 //Realização do CRUD
-
 import Receita from "@/models/Receita";
 import connectMongo from "@/utils/dbConnect";
 
-//carregar as receitas do usuario
-export const getReceita = async (req, res) => {
+// Carregar as receitas do usuário
+export const getReceita = async (req) => {
   await connectMongo();
   try {
-    const receita = await Receita.find({ userId: req.usuario._id });
-    res.status(200).json({ receita });
+    const receita = await Receita.find({ userId: req.user.userId });
+    return new Response(JSON.stringify({ receita }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    res.status(500).json({ error });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
 
@@ -28,8 +33,13 @@ export const addReceita = async (req, res) => {
 
   try {
     // Certifique-se de que ingredientes é um array de objetos
-    if (!Array.isArray(ingredientes) || ingredientes.some(ing => !ing.nomeIngrediente || !ing.quantIngrediente)) {
-      return res.status(400).json({ message: "Dados de ingredientes inválidos" });
+    if (
+      !Array.isArray(ingredientes) ||
+      ingredientes.some((ing) => !ing.nomeIngrediente || !ing.quantIngrediente)
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Dados de ingredientes inválidos" });
     }
 
     const newReceita = new Receita({
@@ -37,17 +47,17 @@ export const addReceita = async (req, res) => {
       descricaoReceita,
       categoriaReceita,
       modoPreparo,
-      // userId: req.usuario.userId, // Associa a receita ao usuário logado
+      userId: req.user._id, // Associa a receita ao usuário logado
       ingredientes, // Passa os ingredientes para o modelo Receita
     });
 
     await newReceita.save();
+
     res.status(201).json({ receita: newReceita });
   } catch (error) {
     res.status(500).json({ message: "Erro ao adicionar receita" });
   }
 };
-
 
 //Atualizar Receita
 export const updateReceita = async (req, res) => {

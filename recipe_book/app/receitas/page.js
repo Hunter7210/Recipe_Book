@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -25,19 +24,26 @@ export default function ReceitaPage() {
         router.push("/login"); // Redireciona para login se o usuário não estiver autenticado
         return;
       }
+      console.log(token);
+      try {
+        const response = await fetch("/api/receita", {
+          headers: {
+            Method: GET,
+            Authorization: `Bearer ${token}`, // Envia o token no header da requisição
+          },
+          
+        }console.log("Fez"););
 
-      const response = await fetch("/api/receita", {
-        headers: {
-          Authorization: `Bearer ${token}`, // Envia o token no header da requisição
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setReceitas(data.receitas);
-      } else {
-        // router.push("/login"); // Redireciona para login se houver erro
-        console.log("Retornei para a pagina login porque deu erro aqui")
+        if (response.ok) {
+          const data = await response.json();
+          setReceitas(data.receitas);
+        } else {
+          console.log("Erro ao buscar receitas, redirecionando para login");
+          router.push("/login"); // Redireciona para login se houver erro
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+        router.push("/login"); // Redireciona para login em caso de erro
       }
     };
 
@@ -46,7 +52,7 @@ export default function ReceitaPage() {
 
   const addReceita = async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch("/api/receitas", {
+    const response = await fetch("/api/receita", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
