@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/src/components/Navbar";
-import CustomHead from "@/src/components/CustomHead";
+import CustomHead from "@/src/components/GlobalHead";
 
 export default function Login() {
   const [emailUsuario, setEmailUsuario] = useState("");
@@ -39,7 +39,6 @@ export default function Login() {
         description="Faça login no MyRecipeBook para acessar suas receitas."
         keywords="login, MyRecipeBook, receitas"
       />
-      <Navbar />
       <div className="form">
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
