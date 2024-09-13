@@ -1,4 +1,3 @@
-//Realização do CRUD
 import Receita from "@/models/Receita";
 import connectMongo from "@/utils/dbConnect";
 
@@ -6,8 +5,8 @@ import connectMongo from "@/utils/dbConnect";
 export const getReceita = async (req) => {
   await connectMongo();
   try {
-    const receita = await Receita.find({ userId: req.user.userId });
-    return new Response(JSON.stringify({ receita }), {
+    const receitas = await Receita.find({ userId: req.user.userId });
+    return new Response(JSON.stringify({ receitas }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -59,48 +58,46 @@ export const addReceita = async (req, res) => {
   }
 };
 
-//Atualizar Receita
+// Atualizar Receita
 export const updateReceita = async (req, res) => {
   const { id } = req.query;
   const data = req.body;
   await connectMongo();
 
   try {
-    const updatedTodo = await Todo.findOneAndUpdate(
+    const updatedReceita = await Receita.findOneAndUpdate(
       { _id: id, userId: req.user.userId },
-      { data },
+      { $set: data }, // Use $set para atualizar apenas os campos fornecidos
       { new: true }
     );
-    if (!updatedTodo)
-      return res.status(404).json({
-        message: "Tarefa não encontrada",
-      });
-    res.status(200).json({ todo: updatedTodo });
+
+    if (!updatedReceita) {
+      return res.status(404).json({ message: "Receita não encontrada" });
+    }
+
+    res.status(200).json({ receita: updatedReceita });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao atualizar tarefa" });
+    res.status(500).json({ message: "Erro ao atualizar receita" });
   }
 };
 
-// delete Tarefa
-export const deleteTodo = async (req, res) => {
+// Deletar Receita
+export const deleteReceita = async (req, res) => {
   const { id } = req.query;
   await connectMongo();
 
   try {
-    const deletedTodo = await Todo.findOneAndDelete({
+    const deletedReceita = await Receita.findOneAndDelete({
       _id: id,
       userId: req.user.userId,
     });
-    if (!deletedTodo)
-      return res.status(404).json({
-        message: "Tarefa não encontrada",
-      });
-    res.status(200).json({
-      message: "Tarefa deletada com sucesso",
-    });
+
+    if (!deletedReceita) {
+      return res.status(404).json({ message: "Receita não encontrada" });
+    }
+
+    res.status(200).json({ message: "Receita deletada com sucesso" });
   } catch (error) {
-    res.status(500).json({
-      message: "Erro ao deletar tarefa",
-    });
+    res.status(500).json({ message: "Erro ao deletar receita" });
   }
 };

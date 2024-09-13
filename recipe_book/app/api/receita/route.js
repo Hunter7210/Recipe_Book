@@ -1,4 +1,4 @@
-import { jwtMiddleware } from "@/utils/middleware";
+import { NextResponse } from "next/server";
 import {
   getReceita,
   addReceita,
@@ -6,36 +6,55 @@ import {
   deleteTodo,
 } from "@/controllers/ReceitaController";
 
-// método GET - listar as tarefas do Usuário
-export async function GET(req, res) {
-  return jwtMiddleware(async (req, res) => {
-    try {
-      await getReceita(req, res);
-      console.log("Passou pelo get da rota")
-    } catch (error) {
-      res.status(500).json({ error: "Erro ao obter receita" });
-    }
-  })(req, res);
+// Método GET - listar as tarefas do Usuário
+export async function GET(req) {
+  try {
+    await getReceita(req);
+    console.log("Passou pelo get da rota");
+    return NextResponse.json({ message: "Receita obtida com sucesso" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao obter receita" },
+      { status: 500 }
+    );
+  }
 }
-
 
 // Método POST - nova tarefa
-export async function POST(req, res) {
-  return jwtMiddleware(async (req, res) => {
-    await addReceita(req, res);
-  })(req, res);
+export async function POST(req) {
+  try {
+    await addReceita(req);
+    return NextResponse.json({ message: "Receita adicionada com sucesso" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao adicionar receita" },
+      { status: 500 }
+    );
+  }
 }
 
-// Método PUT -  Atualiza uma tarefa existente
-export async function PUT(req, res) {
-  return jwtMiddleware(async (req, res) => {
-    await updateReceita(req, res);
-  })(req, res);
+// Método PUT - Atualiza uma tarefa existente
+export async function PUT(req) {
+  try {
+    await updateReceita(req);
+    return NextResponse.json({ message: "Receita atualizada com sucesso" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao atualizar receita" },
+      { status: 500 }
+    );
+  }
 }
 
-// Método DELETE -  Deleta uma tarefa existente
-export async function DELETE(req, res) {
-  return jwtMiddleware(async (req, res) => {
-    await deleteTodo(req, res);
-  })(req, res);
+// Método DELETE - Deleta uma tarefa existente
+export async function DELETE(req) {
+  try {
+    await deleteTodo(req);
+    return NextResponse.json({ message: "Receita deletada com sucesso" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Erro ao deletar receita" },
+      { status: 500 }
+    );
+  }
 }
