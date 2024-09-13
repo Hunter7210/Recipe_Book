@@ -17,47 +17,83 @@ export const getReceita = async (req) => {
     });
   }
 };
-
-// Criar Receita
-export const addReceita = async (req, res) => {
-  const {
-    nomeReceita,
-    descricaoReceita,
-    categoriaReceita,
-    modoPreparo,
-    ingredientes, // Espera-se um array de ingredientes
-  } = req.body;
-
+export const adicionarReceita = async (req) => {
   await connectMongo();
 
   try {
-    // Certifique-se de que ingredientes é um array de objetos
-    if (
-      !Array.isArray(ingredientes) ||
-      ingredientes.some((ing) => !ing.nomeIngrediente || !ing.quantIngrediente)
-    ) {
-      return res
-        .status(400)
-        .json({ message: "Dados de ingredientes inválidos" });
-    }
-
-    const newReceita = new Receita({
+    const {
       nomeReceita,
       descricaoReceita,
       categoriaReceita,
       modoPreparo,
-      userId: req.user._id, // Associa a receita ao usuário logado
-      ingredientes, // Passa os ingredientes para o modelo Receita
+      ingredientes,
+    } = await req.json();
+
+    // Validação básica
+    if (
+      !nomeReceita ||
+      !categoriaReceita ||
+      !modoPreparo ||
+      !ingredientes ||
+      ingredientes.length === 0
+    ) {
+      return new Response(
+        JSON.stringify({
+          error: "Todos os campos obrigatórios devem ser preenchidos.",
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Log para depuração
+    console.log("Dados da receita recebidos:", {
+      nomeReceita,
+      descricaoReceita,
+      categoriaReceita,
+      modoPreparo,
+      ingredientes,
     });
 
-    await newReceita.save();
+    // Criação de uma nova receita
+    const novaReceita = new Receita({
+      nomeReceita,
+      descricaoReceita,
+      categoriaReceita,
+      modoPreparo,
+      userId: req.user.userId, // Obtendo o userId do usuário autenticado
+      ingredientes,
+    });
 
-    res.status(201).json({ receita: newReceita });
+    // Salvando a nova receita no banco de dados
+    await novaReceita.save();
+
+    return new Response(
+      JSON.stringify({
+        message: "Receita criada com sucesso!",
+        receita: novaReceita,
+      }),
+      {
+        status: 201,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    res.status(500).json({ message: "Erro ao adicionar receita" });
+    console.error("Erro ao adicionar receita:", error); // Log detalhado do erro
+
+    return new Response(
+      JSON.stringify({
+        error: "Erro ao criar a receita. Verifique os logs do servidor.",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 };
-
 // Atualizar Receita
 export const updateReceita = async (req, res) => {
   const { id } = req.query;

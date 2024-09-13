@@ -19,11 +19,11 @@ export async function GET(req) {
     );
   }
 }
-
 // Método POST - nova tarefa
 export async function POST(req) {
   try {
     await addReceita(req);
+    console.log("Passou pelo post da rota");
     return NextResponse.json({ message: "Receita adicionada com sucesso" });
   } catch (error) {
     return NextResponse.json(

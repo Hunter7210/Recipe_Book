@@ -24,19 +24,24 @@ export default function ReceitaPage() {
         router.push("/login"); // Redireciona para login se o usuário não estiver autenticado
         return;
       }
-      console.log(token);
       try {
         const response = await fetch("/api/receita", {
           headers: {
             Authorization: `Bearer ${token}`, // Envia o token no header da requisição
           },
         });
-        console.log("Fez");
         if (response.ok) {
           const data = await response.json();
-          setReceitas(data.receitas);
+          console.log("Dados recebidos:", data);
+          if (Array.isArray(data.receitas)) {
+            setReceitas(data.receitas);
+          } else {
+            console.error("Formato de dados inválido:", data);
+            // Pode definir receitas como um array vazio em caso de erro
+            setReceitas([]);
+          }
         } else {
-          console.log("Erro ao buscar receitas, redirecionando para login");
+          console.error("Erro ao buscar receitas, redirecionando para login");
           router.push("/login"); // Redireciona para login se houver erro
         }
       } catch (error) {
@@ -50,31 +55,55 @@ export default function ReceitaPage() {
 
   const addReceita = async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch("/api/receita", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newReceita),
-    });
 
-    const data = await response.json();
-    setReceitas([...receitas, data.receita]);
-    setNewReceita({
-      nomeReceita: "",
-      descricaoReceita: "",
-      categoriaReceita: "",
-      modoPreparo: "",
-      ingredientes: [],
-    });
+    try {
+      const response = await fetch("/api/receita", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Adicionando o token para autorização
+        },
+        body: JSON.stringify(newReceita), // Convertendo a nova receita para JSON
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Erro ao adicionar receita:", errorData.error);
+        return; // Se houver erro, interrompe a execução
+      }
+
+      const data = await response.json();
+      if (data.receita) {
+        // Se a receita for criada com sucesso, atualiza o estado
+        setReceitas((prevReceitas) => [...prevReceitas, data.receita]);
+      }
+
+      // Reseta o formulário após o sucesso
+      setNewReceita({
+        nomeReceita: "",
+        descricaoReceita: "",
+        categoriaReceita: "",
+        modoPreparo: "",
+        ingredientes: [],
+      });
+    } catch (error) {
+      console.error("Erro de rede ou servidor:", error);
+    }
   };
 
   const addIngrediente = () => {
-    setNewReceita({
-      ...newReceita,
-      ingredientes: [...newReceita.ingredientes, novoIngrediente],
-    });
+    if (!novoIngrediente.nomeIngrediente || !novoIngrediente.quantIngrediente) {
+      console.error("Nome e quantidade do ingrediente são obrigatórios.");
+      return;
+    }
+
+    // Adiciona o novo ingrediente à lista de ingredientes da receita
+    setNewReceita((prevReceita) => ({
+      ...prevReceita,
+      ingredientes: [...prevReceita.ingredientes, novoIngrediente],
+    }));
+
+    // Reseta o formulário de novo ingrediente
     setNovoIngrediente({ nomeIngrediente: "", quantIngrediente: "" });
   };
 
@@ -152,25 +181,27 @@ export default function ReceitaPage() {
       <button onClick={addIngrediente}>Adicionar Ingrediente</button>
       <button onClick={addReceita}>Adicionar Receita</button>
       <ul>
-        {receitas?.map((receita) => (
-          <li key={receita._id}>
-            <h2>{receita.nomeReceita}</h2>
-            <p>{receita.descricaoReceita}</p>
-            <p>Categoria: {receita.categoriaReceita}</p>
-            <p>Modo de Preparo: {receita.modoPreparo}</p>
-            <h3>Ingredientes:</h3>
-            <ul>
-              {receita.ingredientes?.map((ing, index) => (
-                <li
-                  key={index}
-                >{`${ing.nomeIngrediente}: ${ing.quantIngrediente}`}</li>
-              ))}
-            </ul>
-            <button onClick={() => deleteReceita(receita._id)}>
-              Excluir Receita
-            </button>
-          </li>
-        ))}
+        {Array.isArray(receitas) &&
+          receitas.map((receita) => (
+            <li key={receita._id}>
+              <h2>{receita.nomeReceita}</h2>
+              <p>{receita.descricaoReceita}</p>
+              <p>Categoria: {receita.categoriaReceita}</p>
+              <p>Modo de Preparo: {receita.modoPreparo}</p>
+              <h3>Ingredientes:</h3>
+              <ul>
+                {Array.isArray(receita.ingredientes) &&
+                  receita.ingredientes.map((ing, index) => (
+                    <li
+                      key={index}
+                    >{`${ing.nomeIngrediente}: ${ing.quantIngrediente}`}</li>
+                  ))}
+              </ul>
+              <button onClick={() => deleteReceita(receita._id)}>
+                Excluir Receita
+              </button>
+            </li>
+          ))}
       </ul>
     </div>
   );
