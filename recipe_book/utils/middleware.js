@@ -18,7 +18,9 @@ export const jwtMiddleware = (handler) => async (req) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // armazena os dados do usuário no request
     return handler(req); // continua para o próximo handler
+
   } catch (error) {
+    console.log("Erro");
     return new Response(JSON.stringify({ message: "Token inválido" }), {
       status: 401,
       headers: { "Content-Type": "application/json" },

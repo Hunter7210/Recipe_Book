@@ -28,12 +28,10 @@ export default function ReceitaPage() {
       try {
         const response = await fetch("/api/receita", {
           headers: {
-            Method: GET,
             Authorization: `Bearer ${token}`, // Envia o token no header da requisição
           },
-          
-        }console.log("Fez"););
-
+        });
+        console.log("Fez");
         if (response.ok) {
           const data = await response.json();
           setReceitas(data.receitas);
@@ -154,7 +152,7 @@ export default function ReceitaPage() {
       <button onClick={addIngrediente}>Adicionar Ingrediente</button>
       <button onClick={addReceita}>Adicionar Receita</button>
       <ul>
-        {receitas.map((receita) => (
+        {receitas?.map((receita) => (
           <li key={receita._id}>
             <h2>{receita.nomeReceita}</h2>
             <p>{receita.descricaoReceita}</p>
@@ -162,7 +160,7 @@ export default function ReceitaPage() {
             <p>Modo de Preparo: {receita.modoPreparo}</p>
             <h3>Ingredientes:</h3>
             <ul>
-              {receita.ingredientes.map((ing, index) => (
+              {receita.ingredientes?.map((ing, index) => (
                 <li
                   key={index}
                 >{`${ing.nomeIngrediente}: ${ing.quantIngrediente}`}</li>
