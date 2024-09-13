@@ -52,7 +52,6 @@ export default function ReceitaPage() {
 
     fetchReceitas();
   }, [router]);
-
   const addReceita = async () => {
     const token = localStorage.getItem("token");
 
@@ -73,9 +72,14 @@ export default function ReceitaPage() {
       }
 
       const data = await response.json();
-      if (data.receita) {
+      console.log("Dados retornados da API:", data); // Verifique o objeto completo
+
+      if (data && data.receita) {
         // Se a receita for criada com sucesso, atualiza o estado
         setReceitas((prevReceitas) => [...prevReceitas, data.receita]);
+        console.log("Receita adicionada com sucesso");
+      } else {
+        console.error("Receita não encontrada nos dados retornados:", data);
       }
 
       // Reseta o formulário após o sucesso
