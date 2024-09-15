@@ -1,31 +1,30 @@
-//Criando formulário para cadastrar Usuario
-
 // app/cadastro-usuario/page.js
 
-'use client'; // Adicione esta linha para usar hooks no cliente
+"use client"; // Para utilizar hooks no cliente
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const CadastroUsuario = () => {
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/usuarios', {
-      method: 'POST',
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ nome, email, senha }),
     });
 
-    if (response.ok) {
-      alert('Usuário cadastrado com sucesso');
+    if (response.ok) {/* 
+        Router.push("/login-usuario") */
+      alert("Usuário cadastrado com sucesso");
     } else {
-      alert('Erro ao cadastrar usuário');
+      alert("Erro ao cadastrar usuário");
     }
   };
 

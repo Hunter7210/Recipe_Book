@@ -8,7 +8,7 @@ const ingredienteSchema = new mongoose.Schema({
   qtdIngred: { type: String, required: true },
 });
 
-//Criando um Schema de receita 
+//Criando um Schema de receita
 const receitaSchema = new mongoose.Schema(
   {
     nomeReceita: { type: String, required: true },
