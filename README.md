@@ -156,7 +156,19 @@ classDiagram
 <details>
 
 <summary><strong>Prototipagem</strong></summary>
-![Link Protipagem Figma](https://www.figma.com/design/FDwebPRgBJIBdVcXLWyhG5/MyRecipeBook?node-id=0-1&node-type=canvas&t=7Xpr3z8IzUscCQIb-0)
+[Protótipos no Figma](https://www.figma.com/design/FDwebPRgBJIBdVcXLWyhG5/MyRecipeBook?m=auto&t=IP4AiYEfyHAjkNTz-1)
+
+## Baixa Fidelidade | Wireframe
+
+![Baixa Fidelidade](documentation_img/prototypes/wireframe.png)
+
+## Média Fidelidade | Mid-Fidelity
+
+![Média Fidelidade](documentation_img/prototypes/mid-fidelity.png)
+
+## Alta Fidelidade | High-Fidelity
+
+![Alta Fidelidade](documentation_img/prototypes/high-fidelity.png)
 
 
 </details>

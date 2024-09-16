@@ -3,6 +3,7 @@
 "use client"; // Adicione esta linha para usar hooks no cliente
 
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 const LoginUsuario = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ const LoginUsuario = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
       <h1>Login de Usuário</h1>
       <form onSubmit={handleSubmit}>
         <div>

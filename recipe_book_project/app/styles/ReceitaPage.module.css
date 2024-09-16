@@ -71,3 +71,502 @@
     display: flex;
     gap: 10px;
 }
+
+@keyframes slide-top {
+    0% {
+        transform: translateY(200px);
+        opacity: 0%;
+    }
+
+    100% {
+        transform: translateY(-1px);
+        opacity: 100%;
+    }
+}
+
+@keyframes hovergaleria {
+    0% {
+        letter-spacing: auto;
+    }
+
+    50% {
+        letter-spacing: 10px;
+    }
+
+    100% {
+        letter-spacing: auto;
+    }
+}
+
+@keyframes footerinvert {
+    from {
+        background-color: #3E505C;
+        color: #fff;
+    }
+
+    to {
+        background-color: #fff;
+        color: #3E505C;
+    }
+}
+
+@keyframes footerinvertout {
+    from {
+        background-color: #fff;
+        color: #3E505C;
+    }
+    to {
+        background-color: #3E505C;
+        color: #fff;
+    }
+}
+
+body {
+    margin: 0px auto;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: -50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    margin: 0px 0px;
+    background-color: #3E505C;
+    padding: 0px;
+    display: flex;
+}
+
+.navbar ul {
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.navbar li {
+    display: flex;
+}
+
+.profilephoto {
+    border-radius: 50%;
+    float: left;
+}
+
+.searchbar {
+    background-color: #28343b;
+    border-radius: 10px;
+    border: 0px solid;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+}
+
+.bannerhome {
+    height: 92vh;
+    background-color: #3E505C;
+    color: #fff;
+    font-family: "Climate Crisis";
+    letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bannertext {
+    margin-top: 150px;
+}
+
+.bannerhome h1 {
+    margin: -100px;
+    text-align: center;
+    animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.bannerhome img {
+    position: relative;
+    bottom: 123px;
+}
+
+.galeria {
+    margin-top: 60px;
+    font-family: "Climate Crisis";
+}
+
+.galeriaitem {
+    font-family: "Climate Crisis";
+    letter-spacing: 2px;
+    margin: 30px 75px 30px 75px;
+    padding: 45px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 117px;
+    cursor: pointer;
+}
+
+.galeriaitem:hover {
+    animation: hovergaleria 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+hr {
+    width: 80vw;
+    border: 1px solid #00000041;
+    margin: 60px auto 60px auto;
+}
+
+.categorias {
+    font-family: "Climate Crisis";
+    margin: 30px 75px;
+    color: #000000;
+}
+
+.categorias h2 {
+    font-size: 58px;
+    letter-spacing: 2px;
+}
+
+.rowcategorias {
+    display: flex;
+    flex-wrap: wrap;
+    animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.categoriasitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    height: 240px;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 15px 15px;
+}
+
+.categoriasitem:hover {
+    background-color: #C1C2D6;
+    transition: 0.5s;
+}
+
+.categoriasitem img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.categoriasitem h5 {
+    font-family: "Aleo";
+    font-weight: 900;
+    font-size: 20px;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 148px;
+    height: 55px;
+    text-align: center;
+    margin-top: 30px;
+    color: #3E505C;
+}
+
+.categorytopname {
+    height: 60vh;
+    background-color: #3E505C;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categorytopname h5 {
+    font-family: "Azeret Mono";
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-bottom: -20px;
+    margin-top: 80px;
+    animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.categorytopname h2 {
+    font-family: "Climate Crisis";
+    letter-spacing: 2px;
+    font-size: 70px;
+    text-align: center;
+    animation: slide-top 1.5s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.receitas {
+    font-family: "Climate Crisis";
+    margin: 30px 75px;
+    color: #000000;
+}
+
+.receitas h2 {
+    font-size: 58px;
+    letter-spacing: 2px;
+}
+
+.rowreceitas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.receitasitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 435px;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 15px 15px;
+}
+
+.receitasitem:hover {
+    background-color: #C1C2D6;
+    transition: 0.5s;
+}
+
+.receitasitem img {
+    width: 270px;
+    height: 270px;
+    object-fit: cover;
+}
+
+.receitasitem h5 {
+    font-family: "Aleo";
+    font-weight: 900;
+    font-size: 20px;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 270px;
+    height: 55px;
+    text-align: center;
+    margin-top: 45px;
+    color: #3E505C;
+}
+
+.receitasitem h1 {
+    margin-top: -40px;
+    color: #3E505C;
+}
+
+.receitatopname {
+    background-color: #fff;
+    color: #3E505C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.receitatopname h5 {
+    font-family: "Azeret Mono";
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-bottom: -20px;
+    margin-top: 80px;
+    animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
+}
+
+.receitatopname h2 {
+    font-family: "Climate Crisis";
+    letter-spacing: 3px;
+    font-size: 70px;
+    text-align: center;
+    animation: slide-top 1.5s cubic-bezier(.165, .84, .44, 1.000) both;
+    width: 75%;
+}
+
+.receitatopname h4 {
+    font-family: "Aleo";
+    font-weight: 900;
+    font-size: 28px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    color: #3E505C;
+}
+
+.receitatopname h3 {
+    font-size: 45px;
+    margin-top: 0px;
+}
+
+.receitatopname img {
+    width: 1320px;
+    height: 585px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+#descricaoreceita {
+    font-family: "Aleo";
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #3E505C;
+    width: 75%;
+    font-weight: 700;
+    text-align: center;
+}
+
+.receitaingredientes {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    color: #3E505C;
+}
+
+.receitamododefazer {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    color: #3E505C;
+}
+
+.receitaingredientes h4 {
+    font-size: 28px;
+    font-family: "Azeret Mono";
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #3E505C;
+}
+
+.receitaingredientes ul {
+    list-style-type: disc;
+    margin-left: 0px;
+}
+
+.receitaingredientes li {
+    font-family: "Aleo";
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+.receitamododefazer h4 {
+    font-size: 28px;
+    font-family: "Azeret Mono";
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #3E505C;
+}
+
+.receitamododefazer p {
+    font-family: "Aleo";
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-wrap: wrap;
+    color: #3E505C;
+}
+
+footer {
+    margin-top: 50vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #3E505C;
+    padding: 75px;
+    border-radius: 15px 15px 0px 0px;
+    font-family: "Aleo";
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+    animation: footerinvertout 2s ease-in-out both;
+}
+
+footer:hover {
+    transition: 0.5s;
+    animation: footerinvert 2s ease-in-out both;
+}
+
+.authoptions {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+.authoptions p {
+    font-family: "Aleo";
+    color: #3E505C;
+    margin-top: 160px;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form input {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #00000038;
+    font-family: "Aleo";
+    width: 60%;
+}
+
+.form input:active {
+    outline: 2px invert;
+}
+
+.form textarea {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #00000038;
+    font-family: "Aleo";
+    width: 60%;
+}
+
+.form textarea:active {
+    outline: 2px invert;
+}
+
+.form button {
+    background-color: #3E505C;
+    border-radius: 7.5px;
+    padding: 2.5px 5px;
+    color: #fff;
+    font-family: "Aleo";
+    font-weight: 900;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.form button:hover {
+    background-color: #273A46;
+    transition: 0.5s;
+}
+
+.form h1 {
+    font-family: "Climate Crisis";
+    margin: 30px 120px;
+    color: #3E505C;
+}

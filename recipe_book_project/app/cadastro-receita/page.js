@@ -3,6 +3,7 @@
 "use client"; // Adicione esta linha para usar hooks no cliente
 
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 const CadastroReceita = () => {
   const [nomeReceita, setNomeReceita] = useState("");
@@ -47,6 +48,7 @@ const CadastroReceita = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
       <h1>Cadastro de Receita</h1>
       <form onSubmit={handleSubmit}>
         <div>
