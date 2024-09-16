@@ -9,4 +9,4 @@ Desenvolvendo uma aplicação Livro de receitas no Next
   V Implementar a funcionalidade de hash de senha com Bcrypt.
   V  Implementar autenticação usando JWT para gerar e validar tokens.
   V  Criar middleware para proteger rotas com JWT.
-    Testar a aplicação com as rotas protegidas e MongoDB.
+  V  Testar a aplicação com as rotas protegidas e MongoDB.
