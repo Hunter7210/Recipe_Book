@@ -156,8 +156,6 @@ classDiagram
 <details>
 
 <summary><strong>Prototipagem</strong></summary>
-[Protótipos no Figma](https://www.figma.com/design/FDwebPRgBJIBdVcXLWyhG5/MyRecipeBook?m=auto&t=IP4AiYEfyHAjkNTz-1)
-
 ## Baixa Fidelidade | Wireframe
 
 ![Baixa Fidelidade](documentation_img/prototypes/wireframe.png)
