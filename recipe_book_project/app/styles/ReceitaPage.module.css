@@ -1,0 +1,73 @@
+/* app/styles/ReceitasPage.module.css */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+}
+
+.recipeList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recipeItem {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.editMode {
+    border: 2px solid #007bff;
+    background-color: #e9f5ff;
+}
+
+.editButton {
+    background-color: #28a745;
+}
+
+.deleteButton {
+    background-color: #dc3545;
+}
+
+.editButton:hover {
+    background-color: #218838;
+}
+
+.deleteButton:hover {
+    background-color: #c82333;
+}
+
+.ingredientInput {
+    display: flex;
+    gap: 10px;
+}

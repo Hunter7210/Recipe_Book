@@ -18,43 +18,36 @@ export const getReceita = async (req) => {
   }
 };
 
-// Criar Receita
-export const addReceita = async (req, res) => {
-  const {
-    nomeReceita,
-    descricaoReceita,
-    categoriaReceita,
-    modoPreparo,
-    ingredientes, // Espera-se um array de ingredientes
-  } = req.body;
 
+export const addReceita = async (req) => {
   await connectMongo();
 
   try {
-    // Certifique-se de que ingredientes é um array de objetos
-    if (
-      !Array.isArray(ingredientes) ||
-      ingredientes.some((ing) => !ing.nomeIngrediente || !ing.quantIngrediente)
-    ) {
-      return res
-        .status(400)
-        .json({ message: "Dados de ingredientes inválidos" });
-    }
-
-    const newReceita = new Receita({
+    const {
       nomeReceita,
       descricaoReceita,
       categoriaReceita,
       modoPreparo,
-      userId: req.user._id, // Associa a receita ao usuário logado
-      ingredientes, // Passa os ingredientes para o modelo Receita
+      ingredientes,
+    } = await req.json();
+
+    // Cria uma nova receita
+    const novaReceita = new Receita({
+      nomeReceita,
+      descricaoReceita,
+      categoriaReceita,
+      modoPreparo,
+      ingredientes,
+      userId: req.user.userId, // Assumindo que você tem um usuário autenticado
     });
 
-    await newReceita.save();
+    // Salva a receita no banco de dados
+    const receitaSalva = await novaReceita.save();
 
-    res.status(201).json({ receita: newReceita });
+    // Retorna a receita criada
+    return { receita: receitaSalva };
   } catch (error) {
-    res.status(500).json({ message: "Erro ao adicionar receita" });
+    throw new Error(error.message);
   }
 };
 
