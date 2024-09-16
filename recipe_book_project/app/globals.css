@@ -97,7 +97,7 @@ a {
   height: 92vh;
   background-color: #3E505C;
   color: #fff;
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   letter-spacing: 2px;
   display: flex;
   flex-direction: column;
@@ -111,21 +111,22 @@ a {
 .bannerhome h1 {
   margin: -100px;
   text-align: center;
+  font-family: '__Climate_Crisis_6cdb4b';
   animation: slide-top 1s cubic-bezier(.165, .84, .44, 1.000) both;
 }
 
 .bannerhome img {
   position: relative;
-  bottom: 123px;
+  bottom: 122px;
 }
 
 .galeria {
   margin-top: 60px;
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
 }
 
 .galeriaitem {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   letter-spacing: 2px;
   margin: 30px 75px 30px 75px;
   padding: 45px;
@@ -146,7 +147,7 @@ hr {
 }
 
 .categorias {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   margin: 30px 75px;
   color: #000000;
 }
@@ -221,7 +222,7 @@ hr {
 }
 
 .categorytopname h2 {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   letter-spacing: 2px;
   font-size: 70px;
   text-align: center;
@@ -229,7 +230,7 @@ hr {
 }
 
 .receitas {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   margin: 30px 75px;
   color: #000000;
 }
@@ -309,7 +310,7 @@ hr {
 }
 
 .receitatopname h2 {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   letter-spacing: 3px;
   font-size: 70px;
   text-align: center;
@@ -442,8 +443,9 @@ footer:hover {
 .form form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  width: 100%;
   align-items: center;
+  margin-left: -160px;
 }
 
 .form input {
@@ -453,7 +455,7 @@ footer:hover {
   outline: none;
   border: 1px solid #00000038;
   font-family: "Aleo";
-  width: 60%;
+  width: 150%;
 }
 
 .form input:active {
@@ -492,7 +494,7 @@ footer:hover {
 }
 
 .form h1 {
-  font-family: "Climate Crisis";
+  font-family: '__Climate_Crisis_6cdb4b';
   margin: 30px 120px;
   color: #3E505C;
 }

@@ -49,84 +49,87 @@ const CadastroReceita = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <h1>Cadastro de Receita</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome:</label>
-          <input
-            type="text"
-            value={nomeReceita}
-            onChange={(e) => setNomeReceita(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Descrição:</label>
-          <textarea
-            value={descricaoReceita}
-            onChange={(e) => setDescricaoReceita(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Categoria:</label>
-          <input
-            type="text"
-            value={categoriaReceita}
-            onChange={(e) => setCategoriaReceita(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Modo de Preparo:</label>
-          <textarea
-            value={modoPreparo}
-            onChange={(e) => setModoPreparo(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Ingredientes:</label>
-          {ingredientes.map((ingrediente, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                placeholder="Nome do Ingrediente"
-                value={ingrediente.nomeIngred}
-                onChange={(e) => {
-                  const newIngredientes = [...ingredientes];
-                  newIngredientes[index].nomeIngred = e.target.value;
-                  setIngredientes(newIngredientes);
-                }}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Quantidade"
-                value={ingrediente.qtdIngred}
-                onChange={(e) => {
-                  const newIngredientes = [...ingredientes];
-                  newIngredientes[index].qtdIngred = e.target.value;
-                  setIngredientes(newIngredientes);
-                }}
-                required
-              />
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={() =>
-              setIngredientes([
-                ...ingredientes,
-                { nomeIngred: "", qtdIngred: "" },
-              ])
-            }
-          >
-            Adicionar Ingrediente
-          </button>
-        </div>
-        <button type="submit">Cadastrar Receita</button>
-      </form>
+      <div className="form">
+        <h1>Cadastro de Receita</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Nome:</label>
+            <input
+              type="text"
+              value={nomeReceita}
+              onChange={(e) => setNomeReceita(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Descrição:</label>
+            <textarea
+              value={descricaoReceita}
+              onChange={(e) => setDescricaoReceita(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Categoria:</label>
+            <input
+              type="text"
+              value={categoriaReceita}
+              onChange={(e) => setCategoriaReceita(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Modo de Preparo:</label>
+            <textarea
+              value={modoPreparo}
+              onChange={(e) => setModoPreparo(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Ingredientes:</label>
+            {ingredientes.map((ingrediente, index) => (
+              <div key={index}>
+                <input
+                  type="text"
+                  placeholder="Nome do Ingrediente"
+                  value={ingrediente.nomeIngred}
+                  onChange={(e) => {
+                    const newIngredientes = [...ingredientes];
+                    newIngredientes[index].nomeIngred = e.target.value;
+                    setIngredientes(newIngredientes);
+                  }}
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Quantidade"
+                  value={ingrediente.qtdIngred}
+                  onChange={(e) => {
+                    const newIngredientes = [...ingredientes];
+                    newIngredientes[index].qtdIngred = e.target.value;
+                    setIngredientes(newIngredientes);
+                  }}
+                  required
+                />
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() =>
+                setIngredientes([
+                  ...ingredientes,
+                  { nomeIngred: "", qtdIngred: "" },
+                ])
+              }
+            >
+              Adicionar Ingrediente
+            </button>
+          </div>
+          <br/>
+          <button type="submit">Cadastrar Receita</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -8,16 +8,16 @@ export default function Home() {
       <Navbar></Navbar>
     <div class="bannerhome">
         <div class="bannertext">
-            <h1 style="font-size: 256px;">COZINHE</h1>
-            <h1 style="font-size: 157px;">COM PRAZER</h1>
+            <h1 style={{fontSize: '256px'}}>COZINHE</h1>
+            <h1 style={{fontSize: '156px'}}>COM PRAZER</h1>
         </div>
         <img src="https://i.postimg.cc/vHy4bHLK/strawberry.png"/>
     </div>
     <div class="galeria">
         <ul>
-            <li class="galeriaitem" style="background-color: #8F9FA4;">Suas receitas</li>
-            <li class="galeriaitem" style="background-color: #616C71;">Bem avaliadas</li>
-            <li class="galeriaitem" style="background-color: #3E505C;">Novas receitas</li>
+            <li class="galeriaitem" style={{backgroundColor: '#8F9FA4'}}>Suas receitas</li>
+            <li class="galeriaitem" style={{backgroundColor: '#616C71'}}>Bem avaliadas</li>
+            <li class="galeriaitem" style={{backgroundColor: '#3E505C'}}>Novas receitas</li>
         </ul>
     </div>
     <hr/>

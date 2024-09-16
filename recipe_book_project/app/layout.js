@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import Head from "next/head";
 import "./globals.css";
+import { Aleo, Climate_Crisis } from 'next/font/google';
 import Navbar from "./components/Navbar";
 
 const geistSans = localFont({
@@ -12,6 +13,20 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+    
+const climateCrisis = Climate_Crisis({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-climate-crisis',
+  weight: ['400']
+});
+    
+const aleo = Aleo({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-aleo-serif',
+  weight: ['100','200','300','400','500','600','700','800','900']
 });
 
 export const metadata = {
@@ -25,13 +40,13 @@ export default function RootLayout({ children }) {
       <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link rel="preconnect" as="stylesheet" href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" crossorigin/>
         <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${climateCrisis.className}, ${aleo.className}`}>
         {children}
       </body>
     </html>

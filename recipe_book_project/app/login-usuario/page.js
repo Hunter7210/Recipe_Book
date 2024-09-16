@@ -21,8 +21,8 @@ const LoginUsuario = () => {
     });
 
     if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token); // Salve o token no localStorage
+      const data = await response.json();
+      localStorage.setItem("token", data.token); // Salve o token no localStorage
       alert("Login bem-sucedido");
       // Redirecione para a página principal ou onde desejar
     } else {
@@ -33,28 +33,30 @@ const LoginUsuario = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <h1>Login de Usuário</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input
-            type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+      <div className="form">
+        <h1>Login de Usuário</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Senha:</label>
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 };
