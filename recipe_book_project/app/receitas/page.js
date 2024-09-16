@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 
 const ReceitasPage = () => {
   const [receitas, setReceitas] = useState([]);
@@ -131,6 +132,7 @@ const ReceitasPage = () => {
 
   return (
     <div>
+      <Navbar></Navbar>
       <h1>Minhas Receitas</h1>
       {receitas.length === 0 ? (
         <p>Você não tem receitas cadastradas.</p>

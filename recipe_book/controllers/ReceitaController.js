@@ -18,7 +18,6 @@ export const getReceita = async (req) => {
   }
 };
 
-
 export const addReceita = async (req) => {
   await connectMongo();
 
@@ -31,26 +30,71 @@ export const addReceita = async (req) => {
       ingredientes,
     } = await req.json();
 
-    // Cria uma nova receita
-    const novaReceita = new Receita({
+    // Validação básica
+    if (
+      !nomeReceita ||
+      !categoriaReceita ||
+      !modoPreparo ||
+      !ingredientes ||
+      ingredientes.length === 0
+    ) {
+      return new Response(
+        JSON.stringify({
+          error: "Todos os campos obrigatórios devem ser preenchidos.",
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Log para depuração
+    console.log("Dados da receita recebidos:", {
       nomeReceita,
       descricaoReceita,
       categoriaReceita,
       modoPreparo,
       ingredientes,
-      userId: req.user.userId, // Assumindo que você tem um usuário autenticado
     });
 
-    // Salva a receita no banco de dados
-    const receitaSalva = await novaReceita.save();
+    // Criação de uma nova receita
+    const novaReceita = new Receita({
+      nomeReceita,
+      descricaoReceita,
+      categoriaReceita,
+      modoPreparo,
+      userId: req.user.userId, // Obtendo o userId do usuário autenticado
+      ingredientes,
+    });
 
-    // Retorna a receita criada
-    return { receita: receitaSalva };
+    // Salvando a nova receita no banco de dados
+    await novaReceita.save();
+
+    return new Response(
+      JSON.stringify({
+        message: "Receita criada com sucesso!",
+        receita: novaReceita,
+      }),
+      {
+        status: 201,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    throw new Error(error.message);
+    console.error("Erro ao adicionar receita:", error); // Log detalhado do erro
+
+    return new Response(
+      JSON.stringify({
+        error: "Erro ao criar a receita. Verifique os logs do servidor.",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 };
-
 // Atualizar Receita
 export const updateReceita = async (req, res) => {
   const { id } = req.query;

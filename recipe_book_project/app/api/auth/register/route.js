@@ -1,5 +1,6 @@
 import dbConnect from "@/utils/dbConnect";
 import User from "@/models/User";
+import Router from "next/navigation";
 
 export async function POST(req) {
   const { nome, email, senha } = await req.json();
@@ -15,9 +16,10 @@ export async function POST(req) {
     }
 
     const newUser = new User({ nome, email, senha });
-    await newUser.save();
-
+    const test = await newUser.save();
+    
     return new Response(
+    
       JSON.stringify({ message: "Usuário registrado com sucesso" }),
       {
         status: 201,

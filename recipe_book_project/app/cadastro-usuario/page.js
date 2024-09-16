@@ -20,9 +20,9 @@ const CadastroUsuario = () => {
       body: JSON.stringify({ nome, email, senha }),
     });
 
-    if (response.ok) {/* 
-        Router.push("/login-usuario") */
+    if (response.ok) {
       alert("Usuário cadastrado com sucesso");
+      Router.push("/login-usuario") 
     } else {
       alert("Erro ao cadastrar usuário");
     }

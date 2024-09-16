@@ -33,8 +33,8 @@ export default function ReceitaPage() {
         if (response.ok) {
           const data = await response.json();
           console.log("Dados recebidos:", data);
-          if (Array.isArray(data.receitas)) {
-            setReceitas(data.receitas);
+          if (Array.isArray(data.receita)) {
+            setReceitas(data.receita);
           } else {
             console.error("Formato de dados inválido:", data);
             // Pode definir receitas como um array vazio em caso de erro
@@ -52,9 +52,10 @@ export default function ReceitaPage() {
 
     fetchReceitas();
   }, [router]);
+
   const addReceita = async () => {
     const token = localStorage.getItem("token");
-
+    
     try {
       const response = await fetch("/api/receita", {
         method: "POST",
@@ -64,22 +65,22 @@ export default function ReceitaPage() {
         },
         body: JSON.stringify(newReceita), // Convertendo a nova receita para JSON
       });
-
+      
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Erro ao adicionar receita:", errorData.error);
         return; // Se houver erro, interrompe a execução
       }
-
+      
       const data = await response.json();
-      console.log("Dados retornados da API:", data); // Verifique o objeto completo
-
-      if (data && data.receita) {
+      console.log(data.receitas)
+      if (data.receitas) {
         // Se a receita for criada com sucesso, atualiza o estado
-        setReceitas((prevReceitas) => [...prevReceitas, data.receita]);
-        console.log("Receita adicionada com sucesso");
+        setReceitas((prevReceitas) => [...prevReceitas, data.receitas]);
+        console.log("Receita Add")
       } else {
-        console.error("Receita não encontrada nos dados retornados:", data);
+        console.log("Botão de adicionar receita clicado");
+        
       }
 
       // Reseta o formulário após o sucesso
@@ -110,6 +111,8 @@ export default function ReceitaPage() {
     // Reseta o formulário de novo ingrediente
     setNovoIngrediente({ nomeIngrediente: "", quantIngrediente: "" });
   };
+
+
 
   const deleteReceita = async (id) => {
     const token = localStorage.getItem("token");
